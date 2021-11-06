@@ -1,15 +1,22 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous
-public class ServoTest extends LinearOpMode {
-    public CRServo servo1;
+public class test2 extends LinearOpMode {
+
+    DcMotor motor1;
+    DcMotor motor2;
 
     public void runOpMode() throws InterruptedException {
-        servo1 = hardwareMap.crservo.get("servo1");
+
+        motor1 = hardwareMap.dcMotor.get("motor1");
+        motor2 = hardwareMap.dcMotor.get("motor2");
+
 
         waitForStart();
 
@@ -17,12 +24,9 @@ public class ServoTest extends LinearOpMode {
             telemetry.addData("opModeIsActive", opModeIsActive());
             telemetry.update();
 
-            servo1.setDirection(CRServo.Direction.REVERSE);
-            servo1.setPower(1);
+            motor1.setPower(1);
+            motor2.setPower(1);
 
-            telemetry.addData("servo1's power is set to 1", "running");
-            telemetry.update();
         }
     }
 }
-

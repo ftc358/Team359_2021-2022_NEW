@@ -1,0 +1,111 @@
+package org.firstinspires.ftc.teamcode;
+
+import android.telecom.Call;
+import org.firstinspires.ftc.teamcode.VisionPipeline;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+@Autonomous(name = "Autonomous1")
+public class Autonomous1 extends LinearOpMode {
+    private DcMotor RightDrive;
+    private DcMotor LeftDrive;
+    private DcMotor Arm;
+    private DcMotor Intake;
+    private DcMotor Carousel; //did i spell it right
+    //Convert from the counts per revolution of the encoder to counts per inch
+    static final double HD_COUNTS_PER_REV = 28;
+    static final double DRIVE_GEAR_REDUCTION = 20.15293;
+    static final double WHEEL_CIRCUMFERENCE_MM = 90 * Math.PI;
+    static final double DRIVE_COUNTS_PER_MM = (HD_COUNTS_PER_REV * DRIVE_GEAR_REDUCTION) / WHEEL_CIRCUMFERENCE_MM;
+    static final double DRIVE_COUNTS_PER_IN = DRIVE_COUNTS_PER_MM * 25.4;
+
+    //Create elapsed time variable and an instance of elapsed time
+    private ElapsedTime     runtime = new ElapsedTime();
+
+    // Drive function with 3 parameters
+    private void drive(double power, double leftInches, double rightInches) {
+        int rightTarget;
+        int leftTarget;
+        if (opModeIsActive()) {
+            // Create target positions
+            rightTarget = RightDrive.getCurrentPosition() + (int)(rightInches * DRIVE_COUNTS_PER_IN);
+            leftTarget = LeftDrive.getCurrentPosition() + (int)(leftInches * DRIVE_COUNTS_PER_IN);
+
+            // set target position
+            LeftDrive.setTargetPosition(leftTarget);
+            RightDrive.setTargetPosition(rightTarget);
+
+            //switch to run to position mode
+            LeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            RightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            //run to position at the desiginated power
+            LeftDrive.setPower(power);
+            RightDrive.setPower(power);
+
+            // wait until both motors are no longer busy running to position
+            while (opModeIsActive() && (LeftDrive.isBusy() || RightDrive.isBusy())) {
+            }
+
+            // set motor power back to 0
+            LeftDrive.setPower(0);
+            RightDrive.setPower(0);
+        }
+    }
+
+
+    @Override
+    public void runOpMode() {
+
+        RightDrive = hardwareMap.get(DcMotor.class, "RightDrive");
+        LeftDrive = hardwareMap.get(DcMotor.class, "LeftDrive");
+        Arm = hardwareMap.get(DcMotor.class, "Arm");
+        Intake = hardwareMap.get(DcMotor.class, "Intake");
+
+
+        LeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        waitForStart();
+        if (opModeIsActive()) {
+
+            //segment 1
+            drive(0.7, 30, 15);
+
+            runtime.reset(); // reset elapsed time timer
+
+            //segment 2 - lift arm, drive to shipping hub, outtake freight
+            while (opModeIsActive() && runtime.seconds() <= 7) {
+                //lift arm and hold
+                Arm.setTargetPosition(120);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                Arm.setPower(0.3);
+
+                //drive forward for 1 second
+                while (runtime.seconds() > 2 && runtime.seconds() <= 3) {
+                    drive(0.4, 4, 4);
+                }
+
+                //run intake
+                while (runtime.seconds() > 4 && runtime.seconds() <= 7) {
+                    Intake.setPower(-0.6);
+                }
+
+                // turn off arm and intake
+                Arm.setPower(0);
+                Intake.setPower(0);
+                //carisouel thing here
+
+                //segment 3 - this code will never ever run because the code before it will be broken
+                drive(0.7, -15, -30);
+
+
+            }
+        }
+    }
+}
+
