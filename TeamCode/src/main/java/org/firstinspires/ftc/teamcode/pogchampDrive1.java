@@ -75,14 +75,7 @@ public class pogchampDrive1 extends LinearOpMode{
 
             //intake stuff
 
-            if (gamepad1.dpad_down){
-                //spin in
-                intakeMotor.setPower(intakeMotorPower);
-            }
-            else if (gamepad1.dpad_up){
-                //spin opposite direction
-                intakeMotor.setPower(-intakeMotorPower);
-            }
+            intakeMotor.setPower(intakeMotorPower);
 
         }
     }

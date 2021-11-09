@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-import java.lang.Math.*;
 
 
 @TeleOp
@@ -15,8 +14,8 @@ public class teleop2 extends LinearOpMode {
     DcMotor rightDrive;
     DcMotor Intake;
     DcMotor linearSlide;
-    Servo Wheel;
-    Servo cube;
+//    Servo Wheel;
+//    Servo cube;
 
     @Override
     public void runOpMode() {
@@ -25,8 +24,8 @@ public class teleop2 extends LinearOpMode {
         rightDrive = hardwareMap.dcMotor.get("rightDrive");
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
-        Wheel = hardwareMap.servo.get("Wheel");
-        cube = hardwareMap.servo.get("cube");
+//        Wheel = hardwareMap.servo.get("Wheel");
+//        cube = hardwareMap.servo.get("cube");
 
         waitForStart();
 
