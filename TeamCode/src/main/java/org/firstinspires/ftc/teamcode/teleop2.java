@@ -52,27 +52,27 @@ public class teleop2 extends LinearOpMode {
                 rightDrive.setPower(0);
                 leftDrive.setPower(0.8);
             }
-            else if(Math.PI/2.0 <= angle  && angle < 5*Math.PI/6.0)
+            else if(Math.PI/2.0 <= angle  && angle < Math.PI/(6.0/5))
             {
                 rightDrive.setPower(0.8);
                 leftDrive.setPower(0);
             }
-            else if(5*Math.PI/6.0 <= angle || angle < -5*Math.PI/6.0)
+            else if(Math.PI/(6.0/5) <= angle || angle < Math.PI/(6.0/5))
             {
                 rightDrive.setPower(1);
                 leftDrive.setPower(-0.3);
             }
-            else if(-5*Math.PI/6.0 <= angle  && angle < -Math.PI/2.0)
+            else if(Math.PI/(-6.0/5) <= angle  && angle < Math.PI/-2.0)
             {
                 rightDrive.setPower(1);
                 leftDrive.setPower(-1);
             }
-            else if(-Math.PI/2.0 <= angle  && angle < Math.PI/6.0)
+            else if(Math.PI/-2.0 <= angle  && angle < Math.PI/-6.0)
             {
                 rightDrive.setPower(-1);
                 leftDrive.setPower(1);
             }
-            else if(-Math.PI/6.0 <= angle  && angle < Math.PI/6.0)
+            else if(Math.PI/-6.0 <= angle  && angle < Math.PI/6.0)
             {
                 rightDrive.setPower(-0.3);
                 leftDrive.setPower(1);
@@ -98,11 +98,6 @@ public class teleop2 extends LinearOpMode {
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
             telemetry.update();
         }
-    }
-    //TODO create a function for the turns
-    static void turns(double angle)
-    {
-
     }
 }
 
