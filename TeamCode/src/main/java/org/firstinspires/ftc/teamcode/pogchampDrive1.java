@@ -43,8 +43,8 @@ public class pogchampDrive1 extends LinearOpMode{
             telemetry.update();
 
             leftMotorPower = gamepad1.left_stick_y;
-            rightMotorPower = gamepad1.right_stick_y;
-            middleMotorPower = gamepad1.right_stick_x;
+            rightMotorPower = gamepad1.left_stick_y;
+            middleMotorPower = gamepad1.left_stick_x;
 
             //drive stuff
 
@@ -58,7 +58,7 @@ public class pogchampDrive1 extends LinearOpMode{
                     leftMotorPower = gamepad1.right_stick_x;
                 }
             }
-            else if (Math.abs(gamepad1.right_stick_x) > 0){
+            else if (Math.abs(gamepad1.right_stick_x)  > 0){
                 if(gamepad1.right_stick_x > 0){
                     leftMotorPower = -gamepad1.right_stick_x;
                     rightMotorPower = gamepad1.right_stick_x;
@@ -82,6 +82,9 @@ public class pogchampDrive1 extends LinearOpMode{
             else if (gamepad1.dpad_up){
                 //spin opposite direction
                 intakeMotor.setPower(-intakeMotorPower);
+            }
+            else{
+                intakeMotor.setPower(0f);
             }
 
         }
