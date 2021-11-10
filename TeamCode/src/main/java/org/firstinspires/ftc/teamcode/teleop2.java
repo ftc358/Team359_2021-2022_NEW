@@ -10,8 +10,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class teleop2 extends LinearOpMode {
 
-    DcMotor leftDrive;
-    DcMotor rightDrive;
+    DcMotor motorLeft;
+    DcMotor motorRight;
+    DcMotor motorMiddle;
     DcMotor Intake;
     DcMotor linearSlide;
 //    Servo Wheel;
@@ -20,8 +21,9 @@ public class teleop2 extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        leftDrive = hardwareMap.dcMotor.get("leftDrive");
-        rightDrive = hardwareMap.dcMotor.get("rightDrive");
+        motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        motorRight = hardwareMap.dcMotor.get("motorRight");
+        motorMiddle = hardwareMap.dcMotor.get("motorMiddle");
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
 //        Wheel = hardwareMap.servo.get("Wheel");
@@ -39,48 +41,63 @@ public class teleop2 extends LinearOpMode {
             also it's blocky and annoying to debug so i'll make a function that'll be more concise*/
             if(gamepad1.left_trigger != 0) //for more exact positioning--reaally slow turning
             {
-                rightDrive.setPower(0.1);
-                leftDrive.setPower(-0.1);
+                motorRight.setPower(0.1);
+                motorLeft.setPower(-0.1);
             }
-            if(gamepad1.right_trigger != 0) //for more exact positioning--reaally slow turning
+            else if(gamepad1.right_trigger != 0) //for more exact positioning--reaally slow turning
             {
-                rightDrive.setPower(-0.1);
-                leftDrive.setPower(0.1);
+                motorRight.setPower(-0.1);
+                motorLeft.setPower(0.1);
+
             }
-            else if(Math.PI/6.0 <= angle  && angle < Math.PI/2.0)
+            else if((double)Math.PI/6.0<= angle  && angle < (double)Math.PI/2.0)
             {
-                rightDrive.setPower(0);
-                leftDrive.setPower(0.8);
+                motorRight.setPower(0);
+                motorLeft.setPower(0.8);
+                telemetry.addData("line1","working");
+                telemetry.update();
             }
-            else if(Math.PI/2.0 <= angle  && angle < 5*Math.PI/6.0)
+            else if((double)Math.PI/2.0 <= angle  && angle < (double)Math.PI/(6.0/5))
             {
-                rightDrive.setPower(0.8);
-                leftDrive.setPower(0);
+                motorRight.setPower(0.8);
+                motorLeft.setPower(0);
+                telemetry.addData("line2","working");
+                telemetry.update();
             }
-            else if(5*Math.PI/6.0 <= angle || angle < -5*Math.PI/6.0)
+            else if((double)Math.PI/(6.0/5) <= angle || angle < (double)Math.PI/(6.0/5))
             {
-                rightDrive.setPower(1);
-                leftDrive.setPower(-0.3);
+                motorRight.setPower(1);
+                motorLeft.setPower(-0.3);
+                telemetry.addData("line3","working");
+                telemetry.update();
             }
-            else if(-5*Math.PI/6.0 <= angle  && angle < -Math.PI/2.0)
+            else if((double)Math.PI/(-6.0/5) <= angle  && angle < (double)Math.PI/-2.0)
             {
-                rightDrive.setPower(1);
-                leftDrive.setPower(-1);
+                motorRight.setPower(1);
+                motorLeft.setPower(-1);
+                telemetry.addData("line4","working");
+                telemetry.update();
             }
-            else if(-Math.PI/2.0 <= angle  && angle < Math.PI/6.0)
+            else if((double)Math.PI/-2.0 <= angle  && angle < (double)Math.PI/-6.0)
             {
-                rightDrive.setPower(-1);
-                leftDrive.setPower(1);
+                motorRight.setPower(-1);
+                motorLeft.setPower(1);
+                telemetry.addData("line5","working");
+                telemetry.update();
             }
-            else if(-Math.PI/6.0 <= angle  && angle < Math.PI/6.0)
+            else if((double)Math.PI/-6.0 <= angle  && angle < (double)Math.PI/6.0)
             {
-                rightDrive.setPower(-0.3);
-                leftDrive.setPower(1);
+                motorRight.setPower(-0.3);
+                motorLeft.setPower(1);
+                telemetry.addData("line6","working");
+                telemetry.update();
             }
             else
             {
-                leftDrive.setPower(exdrive);
-                rightDrive.setPower(exdrive);
+                motorRight.setPower(exdrive);
+                motorLeft.setPower(exdrive);
+                telemetry.addData("line7","working");
+                telemetry.update();
             }
 
             if(gamepad2.a)
@@ -95,14 +112,10 @@ public class teleop2 extends LinearOpMode {
             linearSlide.setPower(gamepad2.right_stick_y);
 
             // Show the elapsed game time and wheel power.
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
+            telemetry.addData("motorvaluer", motorRight.getPower());
+            telemetry.addData("motorvaluel", motorLeft.getPower());
             telemetry.update();
         }
-    }
-    //TODO create a function for the turns
-    static void turns(double angle)
-    {
-
     }
 }
 
