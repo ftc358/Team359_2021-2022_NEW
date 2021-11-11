@@ -14,6 +14,9 @@ public class pogchampDrive2 extends LinearOpMode{
     private DcMotor motorRight;
     private DcMotor motorMiddle;
     private DcMotor intakeMotor;
+    private DcMotor carouselMotor;
+    private DcMotor slideMotor;
+    private Servo bucketServo;
 
 
     //settings not final!!!!!!
@@ -25,6 +28,9 @@ public class pogchampDrive2 extends LinearOpMode{
     private float middleMotorPower = 0f;
     //intake stuff
     public float intakeMotorPower = 0.5f;
+    //spinny thing stuff
+    public float carouselMotorPower = 0.5f;
+    //servo positions
 
     public void runOpMode() throws InterruptedException {
 
@@ -32,7 +38,9 @@ public class pogchampDrive2 extends LinearOpMode{
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorMiddle = hardwareMap.dcMotor.get("motorMiddle");
         intakeMotor = hardwareMap.dcMotor.get("intakeMotor");
-
+        carouselMotor = hardwareMap.dcMotor.get("carouselMotor");
+        slideMotor = hardwareMap.dcMotor.get("slideMotor");
+        bucketServo = hardwareMap.servo.get("bucketServo");
 
         waitForStart();
 
@@ -42,39 +50,46 @@ public class pogchampDrive2 extends LinearOpMode{
             telemetry.addData("opModeIsActive", opModeIsActive());
             telemetry.update();
 
-            leftMotorPower = gamepad1.left_stick_y;
-            rightMotorPower = gamepad1.left_stick_y;
-            middleMotorPower = gamepad1.left_stick_x;
-
             //drive stuff
 
-            if (Math.abs(gamepad1.right_stick_x) > 0 && Math.abs(gamepad1.left_stick_y) > 0) {
-                if(gamepad1.right_stick_x > 0){
-                    leftMotorPower = 0;
-                    rightMotorPower = gamepad1.right_stick_x;
+            //pivot turn
+            if (Math.abs(gamepad1.right_stick_x) > 0.1f && Math.abs(gamepad1.left_stick_y) > 0.1f) {
+                if(gamepad1.right_stick_x > 0.1f){
+                    leftMotorPower = gamepad1.left_stick_y;
+                    rightMotorPower = 0f;
                 }
-                else if (gamepad1.right_stick_x < 0){
-                    rightMotorPower = 0;
-                    leftMotorPower = gamepad1.right_stick_x;
+                else if (gamepad1.right_stick_x < -0.1f){
+                    rightMotorPower = gamepad1.left_stick_y;
+                    leftMotorPower = 0f;
                 }
             }
-            else if (Math.abs(gamepad1.right_stick_x)  > 0){
-                if(gamepad1.right_stick_x > 0){
+
+            //in place turn
+            else if (Math.abs(gamepad1.right_stick_x)  > 0.1f){
+                if(gamepad1.right_stick_x > 0.1f){
                     leftMotorPower = -gamepad1.right_stick_x;
                     rightMotorPower = gamepad1.right_stick_x;
                 }
-                else if (gamepad1.right_stick_x < 0){
+                else if (gamepad1.right_stick_x < -0.1f){
                     rightMotorPower = gamepad1.right_stick_x;
                     leftMotorPower = -gamepad1.right_stick_x;
                 }
             }
 
+            //headless driving
+            else{
+                leftMotorPower = gamepad1.left_stick_y;
+                rightMotorPower = gamepad1.left_stick_y;
+            }
+
+            middleMotorPower = gamepad1.left_stick_x;
+
+            //set power
             motorLeft.setPower(leftMotorPower);
             motorRight.setPower(rightMotorPower);
             motorMiddle.setPower(middleMotorPower);
 
             //intake stuff
-
             if (gamepad1.dpad_down){
                 //spin in
                 intakeMotor.setPower(intakeMotorPower);
@@ -87,6 +102,51 @@ public class pogchampDrive2 extends LinearOpMode{
                 intakeMotor.setPower(0f);
             }
 
+            //lifting
+            if (gamepad1.right_trigger > 0.1f){
+                slideMotor.setPower(gamepad1.right_trigger);
+            }
+            else if (gamepad1.left_trigger > 0.1f){
+                slideMotor.setPower(-gamepad1.left_trigger);
+            }
+
+            //dump bucket
+            boolean bucketDump = false;
+            if(gamepad1.y){
+                if(bucketDump){
+                    bucketServo.setPosition(0);
+                    bucketDump = false;
+                }
+                else{
+                    bucketServo.setPosition(180);
+                    bucketDump = true;
+                }
+            }
+
+            //carousel spinny thing stuff
+            boolean carouselOn = false;
+
+            if (gamepad1.x){
+                //counterclockwise
+                if(carouselOn){
+                    carouselMotor.setPower(0);
+                    carouselOn = false;
+                }
+                else{
+                    carouselMotor.setPower(-carouselMotorPower);
+                    carouselOn = true;
+                }
+            }
+            else if (gamepad1.b){
+                if(carouselOn){
+                    carouselMotor.setPower(0);
+                    carouselOn = false;
+                }
+                else{
+                    carouselMotor.setPower(carouselMotorPower);
+                    carouselOn = true;
+                }
+            }
         }
     }
 }
