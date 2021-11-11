@@ -15,8 +15,8 @@ public class teleop2 extends LinearOpMode {
     DcMotor motorMiddle;
     DcMotor Intake;
     DcMotor linearSlide;
-//    Servo Wheel;
-//    Servo cube;
+    DcMotor Wheel;
+    Servo cube;
 
     @Override
     public void runOpMode() {
@@ -26,8 +26,8 @@ public class teleop2 extends LinearOpMode {
         motorMiddle = hardwareMap.dcMotor.get("motorMiddle");
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
-        //Wheel = hardwareMap.servo.get("Wheel");
-        //cube = hardwareMap.servo.get("cube");
+        Wheel = hardwareMap.dcMotor.get("Wheel");
+        cube = hardwareMap.servo.get("cube");
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
@@ -39,10 +39,8 @@ public class teleop2 extends LinearOpMode {
             double exdrive = Math.pow(power, 2.12);
             double turn = gamepad1.right_stick_x;
             double turndrive = Math.pow(turn, 2.12);
-            double angle = Math.atan2(gamepad1.right_stick_y,gamepad1.right_stick_x);
+            int servo = 0;
 
-            /*this might not work dayunnn plz fix it
-            also it's blocky and annoying to debug so i'll make a function that'll be more concise*/
             if(gamepad1.right_stick_x>0)
             {
                 motorRight.setPower(-turndrive);
@@ -58,7 +56,17 @@ public class teleop2 extends LinearOpMode {
                 motorRight.setPower(exdrive);
                 motorLeft.setPower(exdrive);
             }
-            motorMiddle.setPower(gamepad1.left_stick_x);
+            if (Math.abs(gamepad1.left_stick_x) > 0.1 )
+            {
+                   motorLeft.setPower(0);
+                   motorRight.setPower(0);
+                   motorMiddle.setPower(gamepad1.right_stick_x);
+            }
+            if(gamepad2.left_bumper)
+            {
+               ;
+
+            }
             if(gamepad2.a)
             {
                 Intake.setPower(-1);
@@ -66,6 +74,10 @@ public class teleop2 extends LinearOpMode {
             else
             {
                 Intake.setPower(gamepad2.left_trigger);
+            }
+            if(gamepad1.b)
+            {
+                Wheel.setPower(1);
             }
 
             linearSlide.setPower(gamepad2.right_stick_y);
