@@ -13,7 +13,7 @@ public class pogchampDrive2 extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
-    private DcMotor intakeMotor;
+    private DcMotor Intake;
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;
@@ -37,9 +37,9 @@ public class pogchampDrive2 extends LinearOpMode{
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorMiddle = hardwareMap.dcMotor.get("motorMiddle");
-        intakeMotor = hardwareMap.dcMotor.get("intakeMotor");
-        carouselMotor = hardwareMap.dcMotor.get("carouselMotor");
-        slideMotor = hardwareMap.dcMotor.get("slideMotor");
+        Intake = hardwareMap.dcMotor.get("Intake");
+        carouselMotor = hardwareMap.dcMotor.get("Wheel");
+        slideMotor = hardwareMap.dcMotor.get("linearSlide");
         bucketServo = hardwareMap.servo.get("bucketServo");
 
         waitForStart();
@@ -92,14 +92,14 @@ public class pogchampDrive2 extends LinearOpMode{
             //intake stuff
             if (gamepad1.dpad_down){
                 //spin in
-                intakeMotor.setPower(intakeMotorPower);
+                Intake.setPower(intakeMotorPower);
             }
             else if (gamepad1.dpad_up){
                 //spin opposite direction
-                intakeMotor.setPower(-intakeMotorPower);
+                Intake.setPower(-intakeMotorPower);
             }
             else{
-                intakeMotor.setPower(0f);
+                Intake.setPower(0f);
             }
 
             //lifting
