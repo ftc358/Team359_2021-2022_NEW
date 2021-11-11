@@ -54,23 +54,23 @@ public class pogchampDrive2 extends LinearOpMode{
 
             //pivot turn
             if (Math.abs(gamepad1.right_stick_x) > 0.1f && Math.abs(gamepad1.left_stick_y) > 0.1f) {
-                if(gamepad1.right_stick_x > 0.1f){
+                if(gamepad1.right_stick_x < -0.1f){
                     leftMotorPower = gamepad1.left_stick_y;
                     rightMotorPower = 0f;
                 }
-                else if (gamepad1.right_stick_x < -0.1f){
+                else if (gamepad1.right_stick_x > 0.1f){
                     rightMotorPower = gamepad1.left_stick_y;
                     leftMotorPower = 0f;
                 }
             }
 
             //in place turn
-            else if (Math.abs(gamepad1.right_stick_x)  > 0.1f){
+            else if (Math.abs(gamepad1.right_stick_x)  < -0.1f){
                 if(gamepad1.right_stick_x > 0.1f){
                     leftMotorPower = -gamepad1.right_stick_x;
                     rightMotorPower = gamepad1.right_stick_x;
                 }
-                else if (gamepad1.right_stick_x < -0.1f){
+                else if (gamepad1.right_stick_x > 0.1f){
                     rightMotorPower = gamepad1.right_stick_x;
                     leftMotorPower = -gamepad1.right_stick_x;
                 }
@@ -109,6 +109,9 @@ public class pogchampDrive2 extends LinearOpMode{
             else if (gamepad1.left_trigger > 0.1f){
                 slideMotor.setPower(-gamepad1.left_trigger);
             }
+            else{
+                slideMotor.setPower(0);
+            }
 
             //dump bucket
             boolean bucketDump = false;
@@ -118,7 +121,7 @@ public class pogchampDrive2 extends LinearOpMode{
                     bucketDump = false;
                 }
                 else{
-                    bucketServo.setPosition(180);
+                    bucketServo.setPosition(140);
                     bucketDump = true;
                 }
             }
