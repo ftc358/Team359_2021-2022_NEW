@@ -39,7 +39,6 @@ public class teleop2 extends LinearOpMode {
             double exdrive = Math.pow(power, 2.12);
             double turn = gamepad1.right_stick_x;
             double turndrive = Math.pow(turn, 2.12);
-            int servo = 0;
 
             if(gamepad1.right_stick_x>0)
             {
@@ -58,14 +57,17 @@ public class teleop2 extends LinearOpMode {
             }
             if (Math.abs(gamepad1.left_stick_x) > 0.1 )
             {
-                   motorLeft.setPower(0);
-                   motorRight.setPower(0);
-                   motorMiddle.setPower(gamepad1.right_stick_x);
+                motorLeft.setPower(0);
+                motorRight.setPower(0);
+                motorMiddle.setPower(gamepad1.right_stick_x);
             }
             if(gamepad2.left_bumper)
             {
-               ;
-
+                cube.setPosition(180);
+            }
+            else if(gamepad2.right_bumper)
+            {
+                cube.setPosition(0);
             }
             if(gamepad2.a)
             {
