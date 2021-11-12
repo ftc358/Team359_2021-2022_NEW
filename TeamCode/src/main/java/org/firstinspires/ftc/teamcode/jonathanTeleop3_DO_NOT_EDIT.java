@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.List;
 
-@TeleOp(name = "intakeAndDriveTest1")
-public class pogchampDrive2 extends LinearOpMode{
+@TeleOp(name = "firstworkingteleop")
+public class jonathanTeleop3_DO_NOT_EDIT extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
@@ -48,6 +48,7 @@ public class pogchampDrive2 extends LinearOpMode{
 
         boolean bucketDump = false;
         boolean carouselOn = false;
+
 
         while (opModeIsActive()) {
             telemetry.addData("opModeIsActive", opModeIsActive());
@@ -93,11 +94,11 @@ public class pogchampDrive2 extends LinearOpMode{
             motorMiddle.setPower(middleMotorPower);
 
             //intake stuff
-            if (gamepad1.dpad_down){
+            if (gamepad2.dpad_down){
                 //spin in
                 intakeMotor.setPower(intakeMotorPower);
             }
-            else if (gamepad1.dpad_up){
+            else if (gamepad2.dpad_up){
                 //spin opposite direction
                 intakeMotor.setPower(-intakeMotorPower);
             }
@@ -106,11 +107,11 @@ public class pogchampDrive2 extends LinearOpMode{
             }
 
             //lifting
-            if (gamepad1.right_trigger > 0.1f){
-                slideMotor.setPower(gamepad1.right_trigger);
+            if (gamepad2.right_trigger > 0.1f){
+                slideMotor.setPower(gamepad2.right_trigger);
             }
-            else if (gamepad1.left_trigger > 0.1f){
-                slideMotor.setPower(-gamepad1.left_trigger);
+            else if (gamepad2.left_trigger > 0.1f){
+                slideMotor.setPower(-gamepad2.left_trigger);
             }
             else{
                 slideMotor.setPower(0);
@@ -118,13 +119,13 @@ public class pogchampDrive2 extends LinearOpMode{
 
             //dump bucket
 
-            if(gamepad1.y){
+            if(gamepad2.y){
                 if(bucketDump){
-                    bucketServo.setPosition(0);
+                    bucketServo.setPosition(0f);
                     bucketDump = false;
                 }
                 else{
-                    bucketServo.setPosition(140);
+                    bucketServo.setPosition(0.9f);
                     bucketDump = true;
                 }
             }
@@ -132,7 +133,7 @@ public class pogchampDrive2 extends LinearOpMode{
             //carousel spinny thing stuff
 
 
-            if (gamepad1.x){
+            if (gamepad2.x){
                 //counterclockwise
                 if(carouselOn){
                     carouselMotor.setPower(0);
@@ -143,7 +144,7 @@ public class pogchampDrive2 extends LinearOpMode{
                     carouselOn = true;
                 }
             }
-            else if (gamepad1.b){
+            else if (gamepad2.b){
                 if(carouselOn){
                     carouselMotor.setPower(0);
                     carouselOn = false;
