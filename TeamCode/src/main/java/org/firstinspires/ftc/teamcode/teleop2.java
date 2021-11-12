@@ -81,6 +81,10 @@ public class teleop2 extends LinearOpMode {
             {
                 Wheel.setPower(1);
             }
+            else
+            {
+                Wheel.setPower(1);
+            }
 
             linearSlide.setPower(gamepad2.right_stick_y);
 
