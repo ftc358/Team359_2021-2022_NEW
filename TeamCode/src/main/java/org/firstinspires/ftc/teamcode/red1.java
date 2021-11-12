@@ -27,8 +27,8 @@ public class red1 extends LinearOpMode {
     DcMotor greenWheel;
     Servo flipBox;
 
-    final double DRIVE_FACTOR = 1000;
-    final double TURN_FACTOR = 200;
+    public double DRIVE_FACTOR = 130.743817939;
+    public double TURN_FACTOR = 3.11111111111;
 
     //functions
 
