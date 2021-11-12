@@ -27,7 +27,7 @@ public class teleop2 extends LinearOpMode {
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
         Wheel = hardwareMap.dcMotor.get("Wheel");
-        cube = hardwareMap.servo.get("cube");
+        cube = hardwareMap.servo.get("bucketServo");
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
