@@ -39,9 +39,9 @@ public class blue2 extends LinearOpMode {
             motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            motorLeft.setTargetPosition(120);
+            motorLeft.setTargetPosition(500);
             motorLeft.setPower(1);
-            motorRight.setTargetPosition(-120);
+            motorRight.setTargetPosition(-500);
             motorRight.setPower(1);
             motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -51,17 +51,22 @@ public class blue2 extends LinearOpMode {
             telemetry.update();
 
 
-//            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+
 //
 //            int position = leftMotor.getCurrentPosition();
 //            telemetry.addData("Encoder Position", position);
 //            telemetry.update();
 //
-//            leftMotor.setTargetPosition(1070);
-//            leftMotor.setPower(1);
-//            rightMotor.setTargetPosition(1070);
-//            rightMotor.setPower(1);
+//            motorLeft.setTargetPosition(1070);
+//            motorLeft.setPower(1);
+//            motorRight.setTargetPosition(1070);
+//            motorRight.setPower(1);
+//            motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
 //            //1070 ticks
 //
 //            Wheel.setPower(0.9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999);
