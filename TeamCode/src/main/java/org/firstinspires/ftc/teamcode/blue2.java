@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous
 public class blue2 extends LinearOpMode {
 
-    DcMotor leftMotor;
-    DcMotor rightMotor;
+    DcMotor motorLeft;
+    DcMotor motorRight;
     DcMotor middleMotor;
     DcMotor linearSlide;
     DcMotor Intake;
@@ -21,8 +21,8 @@ public class blue2 extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        leftMotor = hardwareMap.dcMotor.get("motorLeft");
-        rightMotor = hardwareMap.dcMotor.get("motorRight");
+        motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        motorRight = hardwareMap.dcMotor.get("motorRight");
         middleMotor = hardwareMap.dcMotor.get("motorMiddle");
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
@@ -36,14 +36,19 @@ public class blue2 extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            leftMotor.setTargetPosition(70);
-            leftMotor.setPower(1);
-            rightMotor.setTargetPosition(-70);
-            rightMotor.setPower(1);
+            motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            motorLeft.setTargetPosition(120);
+            motorLeft.setPower(1);
+            motorRight.setTargetPosition(-120);
+            motorRight.setPower(1);
+            motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            int position = motorLeft.getCurrentPosition();
+            telemetry.addData("Encoder Position", position);
+            telemetry.update();
 
 
 //            leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
