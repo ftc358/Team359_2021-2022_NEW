@@ -46,6 +46,9 @@ public class red1 extends LinearOpMode {
         middle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 //
+
+
+    // set time for it to stop because it repeats
 //    public void forward (int inch, double power){
 //        //Reset Encoders
 //        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -121,15 +124,20 @@ public class red1 extends LinearOpMode {
         while (opModeIsActive()) { // && done
             //put the robot in the direction of the tower
 
-            leftDrive.setPower(0.2);
-            rightDrive.setPower(-0.2);
+            leftDrive.setPower(0.4);
+            rightDrive.setPower(-0.4);
 
             sleep(400);
 
             leftDrive.setPower(0);
             rightDrive.setPower(0);
 
+            sleep(5000);
 
+//            leftDrive.setPower(0.7);
+//            rightDrive.setPower(0.7);
+//
+//            sleep(5000);
 
 
 
