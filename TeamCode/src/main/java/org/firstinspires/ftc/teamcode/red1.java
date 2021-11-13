@@ -123,18 +123,32 @@ public class red1 extends LinearOpMode {
     public void runOpMode() {
 
         setup();
+        actualWheel.setDirection(DcMotor.Direction.REVERSE);
 
         waitForStart(); //driver presses play
         while (opModeIsActive()) { // && done
-            //put the robot in the direction of the tower
+            leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            leftDrive.setPower(0.4);
-            rightDrive.setPower(-0.4);
-            sleep (1000);
+            leftDrive.setTargetPosition(-500);
+            rightDrive.setTargetPosition(500);
+            leftDrive.setPower(-1);
+            rightDrive.setPower(1);
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            leftDrive.setPower(0);
-            rightDrive.setPower(0);
-            sleep(5000);
+            int position = leftDrive.getCurrentPosition();
+            telemetry.addData("Encoder Position", position);
+            telemetry.update();
+//            //put the robot in the direction of the tower
+//
+//            leftDrive.setPower(0.4);
+//            rightDrive.setPower(-0.4);
+//            sleep (1000);
+//
+//            leftDrive.setPower(0);
+//            rightDrive.setPower(0);
+//            sleep(5000);
 
 
 //            leftDrive.setPower(0.7);
