@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 
@@ -128,6 +130,7 @@ public class meet0splitteleop extends LinearOpMode{
                     bucketServo.setPosition(0.9f);
                     bucketDump = true;
                 }
+                TimeUnit.MILLISECONDS.sleep(250);
             }
 
             //carousel spinny thing stuff
@@ -143,6 +146,7 @@ public class meet0splitteleop extends LinearOpMode{
                     carouselMotor.setPower(-carouselMotorPower);
                     carouselOn = true;
                 }
+                TimeUnit.MILLISECONDS.sleep(250);
             }
             else if (gamepad2.b){
                 if(carouselOn){
@@ -153,6 +157,7 @@ public class meet0splitteleop extends LinearOpMode{
                     carouselMotor.setPower(carouselMotorPower);
                     carouselOn = true;
                 }
+                TimeUnit.MILLISECONDS.sleep(250);
             }
         }
     }
