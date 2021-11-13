@@ -119,23 +119,29 @@ public class red1 extends LinearOpMode {
         while (opModeIsActive()) {
             //put the robot in the direction of the tower
 
-            //to the tower
-            forward(30, 1);
-            linearSlide.setPower(1);
-            flipBox.setPosition(0.9);
-            linearSlide.setPower(-1);
+            forward(5, 0.7);
+            turn(90, 0.4);
 
-            //back to starting place
-            turn(180, 0.5);
-            forward(30,1);
 
-            //aim
-            turn(45, 0.5);
-            sideDrive(-14, 0.3);
 
-            //go and park
-            forward(14,0.7);
-            sideDrive(10, 0.7);
+
+//            //to the tower
+//            forward(30, 1);
+//            linearSlide.setPower(1);
+//            flipBox.setPosition(0.9);
+//            linearSlide.setPower(-1);
+//
+//            //back to starting place
+//            turn(180, 0.5);
+//            forward(30,1);
+//
+//            //aim
+//            turn(45, 0.5);
+//            sideDrive(-14, 0.3);
+//
+//            //go and park
+//            forward(14,0.7);
+//            sideDrive(10, 0.7);
         }
     }
 }
