@@ -45,68 +45,70 @@ public class red1 extends LinearOpMode {
         rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         middle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+//
+//    public void forward (int inch, double power){
+//        //Reset Encoders
+//        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        //Set Target Position
+//        leftDrive.setTargetPosition((int) (inch * DRIVE_FACTOR));
+//        rightDrive.setTargetPosition((int) (inch * DRIVE_FACTOR));
+//
+//        //Set Drive Power
+//        leftDrive.setPower(power);
+//        rightDrive.setPower(power);
+//
+//        //Set to RUN_TO_POSITION mode
+//        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        while (leftDrive.isBusy() && rightDrive.isBusy()){
+//            //Wait Until Target Position is Reached
+//        }
+//    }
+//
+//    public void turn (int degree, double power){
+//        //Reset Encoders
+//        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        //Set Target Position
+//        leftDrive.setTargetPosition((int) (degree * TURN_FACTOR));
+//        rightDrive.setTargetPosition((int) (degree * TURN_FACTOR));
+//
+//        //Set Drive Power
+//        leftDrive.setPower(power);
+//        rightDrive.setPower(-power);
+//
+//        //Set to RUN_TO_POSITION mode
+//        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        while (leftDrive.isBusy() && rightDrive.isBusy()){
+//            //Wait Until Target Position is Reached
+//        }
+//    }
+//
+//    public void sideDrive(int inch, double power){
+//        //Reset Encoders
+//        middle.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        //Set Target Position
+//        middle.setTargetPosition((int) (inch * DRIVE_FACTOR));
+//
+//        //Set Drive Power
+//        middle.setPower(power);
+//
+//        //Set to RUN_TO_POSITION mode
+//        middle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        while (middle.isBusy()){
+//            //Wait Until Target Position is Reached
+//        }
+//    }
 
-    public void forward (int inch, double power){
-        //Reset Encoders
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //Set Target Position
-        leftDrive.setTargetPosition((int) (inch * DRIVE_FACTOR));
-        rightDrive.setTargetPosition((int) (inch * DRIVE_FACTOR));
-
-        //Set Drive Power
-        leftDrive.setPower(power);
-        rightDrive.setPower(power);
-
-        //Set to RUN_TO_POSITION mode
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        while (leftDrive.isBusy() && rightDrive.isBusy()){
-            //Wait Until Target Position is Reached
-        }
-    }
-
-    public void turn (int degree, double power){
-        //Reset Encoders
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //Set Target Position
-        leftDrive.setTargetPosition((int) (degree * TURN_FACTOR));
-        rightDrive.setTargetPosition((int) (degree * TURN_FACTOR));
-
-        //Set Drive Power
-        leftDrive.setPower(power);
-        rightDrive.setPower(-power);
-
-        //Set to RUN_TO_POSITION mode
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        while (leftDrive.isBusy() && rightDrive.isBusy()){
-            //Wait Until Target Position is Reached
-        }
-    }
-
-    public void sideDrive(int inch, double power){
-        //Reset Encoders
-        middle.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        //Set Target Position
-        middle.setTargetPosition((int) (inch * DRIVE_FACTOR));
-
-        //Set Drive Power
-        middle.setPower(power);
-
-        //Set to RUN_TO_POSITION mode
-        middle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        while (middle.isBusy()){
-            //Wait Until Target Position is Reached
-        }
-    }
+//    public boolean done = true;
 
     //real shit
 
@@ -116,11 +118,24 @@ public class red1 extends LinearOpMode {
         setup();
 
         waitForStart(); //driver presses play
-        while (opModeIsActive()) {
+        while (opModeIsActive()) { // && done
             //put the robot in the direction of the tower
 
-            forward(5, 0.7);
-            turn(90, 0.4);
+            leftDrive.setPower(0.4);
+            rightDrive.setPower(-0.4);
+
+            sleep(1700);
+
+            leftDrive.setPower(0);
+            rightDrive.setPower(0);
+
+
+
+
+
+
+//            done = false;
+        }
 
 
 
@@ -128,6 +143,7 @@ public class red1 extends LinearOpMode {
 //            //to the tower
 //            forward(30, 1);
 //            linearSlide.setPower(1);
+
 //            flipBox.setPosition(0.9);
 //            linearSlide.setPower(-1);
 //
@@ -143,5 +159,4 @@ public class red1 extends LinearOpMode {
 //            forward(14,0.7);
 //            sideDrive(10, 0.7);
         }
-    }
 }
