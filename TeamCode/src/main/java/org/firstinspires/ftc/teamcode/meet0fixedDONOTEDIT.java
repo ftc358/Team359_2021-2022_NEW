@@ -10,12 +10,12 @@ import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 
-@TeleOp(name = "meet 0 teleop")
-public class meet0splitteleop extends LinearOpMode{
+@TeleOp(name = "meet 0 teleop FIXED 832")
+public class meet0fixedDONOTEDIT extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
-    private DcMotor intakeMotor;
+    private DcMotor intakeMotor;x
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;
@@ -113,7 +113,7 @@ public class meet0splitteleop extends LinearOpMode{
                 slideMotor.setPower(gamepad2.right_trigger);
             }
             else if (gamepad2.left_trigger > 0.1f){
-                slideMotor.setPower(-gamepad2.left_trigger);;
+                slideMotor.setPower(-gamepad2.left_trigger);
             }
             else{
                 slideMotor.setPower(0);
