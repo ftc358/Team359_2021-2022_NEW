@@ -130,13 +130,12 @@ public class red1 extends LinearOpMode {
 
             leftDrive.setPower(0.4);
             rightDrive.setPower(-0.4);
-
-            sleep(1000);
+            sleep (1000);
 
             leftDrive.setPower(0);
             rightDrive.setPower(0);
-
             sleep(5000);
+
 
 //            leftDrive.setPower(0.7);
 //            rightDrive.setPower(0.7);
