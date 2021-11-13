@@ -121,10 +121,10 @@ public class red1 extends LinearOpMode {
         while (opModeIsActive()) { // && done
             //put the robot in the direction of the tower
 
-            leftDrive.setPower(0.4);
-            rightDrive.setPower(-0.4);
+            leftDrive.setPower(0.2);
+            rightDrive.setPower(-0.2);
 
-            sleep(1700);
+            sleep(400);
 
             leftDrive.setPower(0);
             rightDrive.setPower(0);
