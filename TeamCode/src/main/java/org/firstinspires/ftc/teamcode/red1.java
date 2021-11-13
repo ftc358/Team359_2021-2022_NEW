@@ -27,8 +27,12 @@ public class red1 extends LinearOpMode {
     DcMotor greenWheel;
     Servo flipBox;
 
-    public double DRIVE_FACTOR = 130.743817939;
-    public double TURN_FACTOR = 3.11111111111;
+//    public double driveFactor = 0.7; //for TeleOp
+//    public long lastTime = System.currentTimeMillis();
+//    public int timeElapsed = 2000; // this is in milliseconds
+//
+//    final double DRIVE_FACTOR = 1000;
+//    final double TURN_FACTOR = 200;
 
     //functions
 
@@ -45,7 +49,10 @@ public class red1 extends LinearOpMode {
         rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         middle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
-//
+
+    //****THE WHILE FUNCTION REPEATS SO SET TIME FOR IT TO STOP USING SLEEP****
+
+
 //    public void forward (int inch, double power){
 //        //Reset Encoders
 //        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -123,22 +130,20 @@ public class red1 extends LinearOpMode {
 
             leftDrive.setPower(0.4);
             rightDrive.setPower(-0.4);
-
-            sleep(1700);
+            sleep (1000);
 
             leftDrive.setPower(0);
             rightDrive.setPower(0);
+            sleep(5000);
 
 
-
-
-
+//            leftDrive.setPower(0.7);
+//            rightDrive.setPower(0.7);
+//
+//            sleep(5000);
 
 //            done = false;
         }
-
-
-
 
 //            //to the tower
 //            forward(30, 1);
