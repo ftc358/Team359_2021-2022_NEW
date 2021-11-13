@@ -1,5 +1,3 @@
-
-
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -18,7 +16,6 @@ public class blue2 extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
-    @Override
     public void runOpMode() {
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
@@ -40,9 +37,9 @@ public class blue2 extends LinearOpMode {
             motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
             motorLeft.setTargetPosition(500);
-            motorLeft.setPower(1);
             motorRight.setTargetPosition(-500);
-            motorRight.setPower(1);
+            motorLeft.setPower(1);
+            motorRight.setPower(-1);
             motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
