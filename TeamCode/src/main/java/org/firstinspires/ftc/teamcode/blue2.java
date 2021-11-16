@@ -36,10 +36,10 @@ public class blue2 extends LinearOpMode {
             motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            motorLeft.setTargetPosition(-500);
-            motorRight.setTargetPosition(500);
-            motorLeft.setPower(-1);
-            motorRight.setPower(1);
+            motorLeft.setTargetPosition(500);
+            motorRight.setTargetPosition(-500);
+            motorLeft.setPower(1);
+            motorRight.setPower(-1);
             motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 

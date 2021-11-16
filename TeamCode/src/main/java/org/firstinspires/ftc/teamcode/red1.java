@@ -44,10 +44,6 @@ public class red1 extends LinearOpMode {
         actualWheel = hardwareMap.dcMotor.get("Intake");
         greenWheel = hardwareMap.dcMotor.get("Wheel");
         flipBox = hardwareMap.servo.get("bucketServo");
-
-        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        middle.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     //****THE WHILE FUNCTION REPEATS SO SET TIME FOR IT TO STOP USING SLEEP****
@@ -115,7 +111,7 @@ public class red1 extends LinearOpMode {
 //        }
 //    }
 
-//    public boolean done = true;
+    public boolean done = true;
 
     //real shit
 
