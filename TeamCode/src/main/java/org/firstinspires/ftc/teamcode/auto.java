@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous
-public class wheelThingie extends LinearOpMode {
+public class auto extends LinearOpMode {
 
     DcMotor motorLeft;
     DcMotor motorRight;
@@ -17,6 +16,7 @@ public class wheelThingie extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
+    public boolean done = true;
 
     public void runOpMode() {
 
@@ -28,33 +28,32 @@ public class wheelThingie extends LinearOpMode {
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
 
-        Wheel.setDirection(DcMotor.Direction.REVERSE);
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
-            motorLeft.setPower(-0.5);
-            motorRight.setPower(0.5);
-            sleep(500);
+        while (opModeIsActive() && done) {
+            motorLeft.setPower(0.6);
+            motorRight.setPower(-0.6);
+            sleep(1500);
             motorRight.setPower(0);
             motorLeft.setPower(0);
 
-            middleMotor.setPower(-0.8);
-            sleep(1800);
-
-            middleMotor.setPower(0);
-
             Wheel.setPower(-1);
-            sleep(3500);
+            sleep(4000);
             Wheel.setPower(0);
 
+            middleMotor.setPower(0.8);
+            sleep(700);
+            middleMotor.setPower(0);
 
             int position = motorLeft.getCurrentPosition();
             telemetry.addData("Encoder Position", position);
             telemetry.update();
+
+            done = false;
 
         }
     }

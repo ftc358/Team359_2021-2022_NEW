@@ -15,7 +15,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
-    private DcMotor intakeMotor;x
+    private DcMotor intakeMotor;
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;
@@ -31,7 +31,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     //intake stuff
     public float intakeMotorPower = 0.5f;
     //spinny thing stuff
-    public float carouselMotorPower = 0.75f;
+    public float carouselMotorPower = 0.9f;
     //servo positions
 
     public void runOpMode() throws InterruptedException {
