@@ -41,6 +41,7 @@ public class autoBlue extends LinearOpMode {
 
     final double DRIVE_FACTOR = 118.835691;
     final double TURN_FACTOR = 200;
+    final double LIFT_FACTOR = 118.835691;
 
     public void drive (float inchF, float inchLR, double power){
         //Reset Encoders
@@ -88,5 +89,12 @@ public class autoBlue extends LinearOpMode {
         while (motorLeft.isBusy() && motorRight.isBusy()){
             //Wait Until Target Position is Reached
         }
+    }
+
+    public void linSlide (float inch, double power)
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition((int) (inch * LIFT_FACTOR));
+        linearSlide.setPower(power);
     }
 }

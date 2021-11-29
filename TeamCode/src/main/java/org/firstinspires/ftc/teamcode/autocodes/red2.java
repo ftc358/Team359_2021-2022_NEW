@@ -27,13 +27,22 @@ public class red2 extends LinearOpMode {
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
 
-        Intake.setDirection(DcMotor.Direction.REVERSE);
+        Wheel.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+
+            drive(-12, -27, 0.4);
+            linSlide(2, 0.5);
+
+            drive(26, 25, 0.4);
+            Wheel.setPower(1);
+            sleep(3000);
+
+            drive(0, -11, 0.4);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
@@ -43,8 +52,10 @@ public class red2 extends LinearOpMode {
 
     final double DRIVE_FACTOR = 118.835691;
     final double TURN_FACTOR = 200;
+    final double LIFT_FACTOR = 118.835691;
 
-    public void drive (float inchF, float inchLR, double power){
+    public void drive (float inchF, float inchLR, double power)
+    {
         //Reset Encoders
         motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -70,7 +81,8 @@ public class red2 extends LinearOpMode {
         }
     }
 
-    public void turn (int degree, double power){
+    public void turn (int degree, double power)
+    {
         //Reset Encoders
         motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -90,5 +102,13 @@ public class red2 extends LinearOpMode {
         while (motorLeft.isBusy() && motorRight.isBusy()){
             //Wait Until Target Position is Reached
         }
+    }
+
+    public void linSlide (float inch, double power)
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition((int) (inch * LIFT_FACTOR));
+        linearSlide.setPower(power);
+        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 }
