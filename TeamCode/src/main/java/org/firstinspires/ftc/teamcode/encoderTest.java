@@ -35,7 +35,7 @@ public class encoderTest extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            drive(2,3,0.6);
+            drive(2,0,0.6);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
