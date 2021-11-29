@@ -73,9 +73,54 @@ public class blue2 extends LinearOpMode {
         }
     }
 
-    void drive()
-    {
+    final double DRIVE_FACTOR = 118.835691;
 
+    public void drive (float inchF, float inchLR, double power){
+        //Reset Encoders
+        motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        middleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set Target Position
+        motorLeft.setTargetPosition((int) (inchF * DRIVE_FACTOR));
+        motorRight.setTargetPosition((int) (inchF * DRIVE_FACTOR));
+        middleMotor.setTargetPosition((int) (inchLR * DRIVE_FACTOR));
+
+        //Set Drive Power
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        middleMotor.setPower(power);
+
+        //Set to RUN_TO_POSITION mode
+        motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        middleMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (motorLeft.isBusy() && motorRight.isBusy() && middleMotor.isBusy()){
+            //Wait Until Target Position is Reached
+        }
+    }
+
+    public void turn (int degree, double power){
+        //Reset Encoders
+        motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set Target Position
+        motorLeft.setTargetPosition((int) (degree * TURN_FACTOR));
+        motorRight.setTargetPosition((int) (degree * TURN_FACTOR));
+
+        //Set Drive Power
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+
+        //Set to RUN_TO_POSITION mode
+        motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (motorLeft.isBusy() && motorRight.isBusy()){
+            //Wait Until Target Position is Reached
+        }
     }
 
 }
