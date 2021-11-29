@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 @Autonomous
-public class red2 extends LinearOpMode {
+public class autoBlue extends LinearOpMode {
 
     DcMotor motorLeft;
     DcMotor motorRight;
@@ -29,10 +29,8 @@ public class red2 extends LinearOpMode {
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
-        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
             // Show the elapsed game time and wheel power.

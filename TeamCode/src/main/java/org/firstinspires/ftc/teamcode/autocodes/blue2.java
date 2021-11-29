@@ -16,7 +16,7 @@ public class blue2 extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         motorRight = hardwareMap.dcMotor.get("motorRight");
@@ -28,10 +28,8 @@ public class blue2 extends LinearOpMode {
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
-        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -74,6 +72,7 @@ public class blue2 extends LinearOpMode {
     }
 
     final double DRIVE_FACTOR = 118.835691;
+    final double TURN_FACTOR = 200;
 
     public void drive (float inchF, float inchLR, double power){
         //Reset Encoders
