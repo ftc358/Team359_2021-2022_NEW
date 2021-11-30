@@ -15,7 +15,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
-    private DcMotor intakeMotor;x
+    private DcMotor intakeMotor;
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;

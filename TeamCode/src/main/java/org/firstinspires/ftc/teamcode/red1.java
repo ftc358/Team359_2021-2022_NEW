@@ -32,7 +32,7 @@ public class red1 extends LinearOpMode {
 
     //functions
 
-    public void setup(){
+    public void setup()throws InterruptedException{
         leftDrive = hardwareMap.dcMotor.get("motorLeft");
         rightDrive = hardwareMap.dcMotor.get("motorRight");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
@@ -116,7 +116,10 @@ public class red1 extends LinearOpMode {
         waitForStart(); //driver presses play
         while (opModeIsActive() && done) {
 
-            //done = false;
+            forward(20, 0.8);
+            done = false;
+
+
             //do ^^ this after every function since it doesn't stop by itself
             //linearSlide.setPower(#);
             //flipBox.setPosition(#);
