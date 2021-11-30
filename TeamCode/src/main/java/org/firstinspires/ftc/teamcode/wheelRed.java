@@ -5,40 +5,54 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-
 @Autonomous
-public class red2 extends LinearOpMode {
+public class wheelRed extends LinearOpMode {
 
-    DcMotor leftMotor;
-    DcMotor rightMotor;
+    DcMotor motorLeft;
+    DcMotor motorRight;
     DcMotor middleMotor;
     DcMotor linearSlide;
     DcMotor Intake;
     DcMotor Wheel;
     Servo cube;
 
-    @Override
     public void runOpMode() {
 
-        leftMotor = hardwareMap.dcMotor.get("leftMotor");
-        rightMotor = hardwareMap.dcMotor.get("rightMotor");
-        middleMotor = hardwareMap.dcMotor.get("middleMotor");
+        motorLeft = hardwareMap.dcMotor.get("motorLeft");
+        motorRight = hardwareMap.dcMotor.get("motorRight");
+        middleMotor = hardwareMap.dcMotor.get("motorMiddle");
         Intake = hardwareMap.dcMotor.get("Intake");
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
 
-        Intake.setDirection(DcMotor.Direction.REVERSE);
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+            middleMotor.setPower(-0.8);
+            sleep(1500);
 
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
+            middleMotor.setPower(0);
+
+            Wheel.setPower(-1);
+            sleep(4000);
+            Wheel.setPower(0);
+
+            int position = motorLeft.getCurrentPosition();
+            telemetry.addData("Encoder Position", position);
             telemetry.update();
+
+            motorLeft.setPower(0.5);
+            motorRight.setPower(-0.5);
+            sleep(500);
+            motorRight.setPower(0);
+            motorLeft.setPower(0);
+
         }
     }
+
 }

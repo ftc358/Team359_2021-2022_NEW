@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.autocodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -16,7 +16,7 @@ public class blue2 extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         motorRight = hardwareMap.dcMotor.get("motorRight");
@@ -28,10 +28,8 @@ public class blue2 extends LinearOpMode {
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
-        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -73,9 +71,63 @@ public class blue2 extends LinearOpMode {
         }
     }
 
-    void drive()
-    {
+    final double DRIVE_FACTOR = 152.788745368;
+    final double TURN_FACTOR = 200;
+    final double LIFT_FACTOR = 30.5577;
 
+    public void drive (float inchF, float inchLR, double power){
+        //Reset Encoders
+        motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        middleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set Target Position
+        motorLeft.setTargetPosition((int) (inchF * DRIVE_FACTOR));
+        motorRight.setTargetPosition((int) (inchF * DRIVE_FACTOR));
+        middleMotor.setTargetPosition((int) (inchLR * DRIVE_FACTOR));
+
+        //Set Drive Power
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+        middleMotor.setPower(power);
+
+        //Set to RUN_TO_POSITION mode
+        motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        middleMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (motorLeft.isBusy() && motorRight.isBusy() && middleMotor.isBusy()){
+            //Wait Until Target Position is Reached
+        }
+    }
+
+    public void turn (int degree, double power){
+        //Reset Encoders
+        motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //Set Target Position
+        motorLeft.setTargetPosition((int) (degree * TURN_FACTOR));
+        motorRight.setTargetPosition((int) (degree * TURN_FACTOR));
+
+        //Set Drive Power
+        motorLeft.setPower(power);
+        motorRight.setPower(power);
+
+        //Set to RUN_TO_POSITION mode
+        motorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (motorLeft.isBusy() && motorRight.isBusy()){
+            //Wait Until Target Position is Reached
+        }
+    }
+
+    public void linSlide (float inch, double power)
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition((int) (inch * LIFT_FACTOR));
+        linearSlide.setPower(power);
     }
 
 }

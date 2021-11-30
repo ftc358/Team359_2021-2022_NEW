@@ -16,7 +16,6 @@ public class blue1 extends LinearOpMode {
     DcMotor greenWheel;
     Servo flipBox;
 
-    @Override
     public void runOpMode() {
 
         leftDrive = hardwareMap.dcMotor.get("motorLeft");
@@ -27,29 +26,21 @@ public class blue1 extends LinearOpMode {
         greenWheel = hardwareMap.dcMotor.get("Wheel");
         flipBox = hardwareMap.servo.get("bucketServo");
 
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            // Setup a variable for each drive wheel to save power level for telemetry
-            double leftPower;
-            double rightPower;
+            leftDrive.setPower(-0.3);
+            rightDrive.setPower(0.3);
+            sleep(5000);
+            leftDrive.setPower(0);
+            rightDrive.setPower(0);
+            sleep(1000);
 
-
-
-            // Send calculated power to wheels
-            leftDrive.setPower(1);
-            rightDrive.setPower(1);
-            linearSlide.setPower(1);
-            middle.setPower(1);
-
-            sleep(3000);
-
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
-            telemetry.update();
         }
     }
 }
