@@ -50,9 +50,9 @@ public class red2 extends LinearOpMode {
         }
     }
 
-    final double DRIVE_FACTOR = 118.835691;
+    final double DRIVE_FACTOR = 152.788745368;
     final double TURN_FACTOR = 200;
-    final double LIFT_FACTOR = 118.835691;
+    final double LIFT_FACTOR = 30.5577;
 
     public void drive (float inchF, float inchLR, double power)
     {
