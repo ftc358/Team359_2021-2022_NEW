@@ -50,6 +50,8 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
         boolean bucketDump = false;
         boolean carouselOn = false;
 
+        //init
+        bucketServo.setPosition(0f);
 
         while (opModeIsActive()) {
             telemetry.addData("opModeIsActive", opModeIsActive());
