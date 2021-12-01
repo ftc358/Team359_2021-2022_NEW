@@ -10,16 +10,15 @@ import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 
-@TeleOp(name = "meet 0 teleop FIXED 832")
+@TeleOp(name = "meet 1 teleop")
 public class meet0fixedDONOTEDIT extends LinearOpMode{
     private DcMotor motorLeft;
     private DcMotor motorRight;
     private DcMotor motorMiddle;
-    private DcMotor intakeMotor;x
+    private DcMotor intakeMotor;
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;
-
 
     //settings not final!!!!!!
     //change settings here:
@@ -31,7 +30,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     //intake stuff
     public float intakeMotorPower = 0.5f;
     //spinny thing stuff
-    public float carouselMotorPower = 0.75f;
+    public float carouselMotorPower = 0.9f;
     //servo positions
 
     public void runOpMode() throws InterruptedException {
@@ -56,7 +55,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             telemetry.addData("opModeIsActive", opModeIsActive());
             telemetry.update();
 
-            //drive stuff
+            //driving stuff
 
             //pivot turn
             if (Math.abs(gamepad1.right_stick_x) > 0.1f && Math.abs(gamepad1.left_stick_y) > 0.1f) {
@@ -71,6 +70,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             }
 
             //in place turn
+            //spin to win
             else if (Math.abs(gamepad1.right_stick_x) > 0.1f){
                 if(gamepad1.right_stick_x < -0.1f){
                     leftMotorPower = gamepad1.right_stick_x;
@@ -83,14 +83,14 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             }
 
             //headless driving
+            //robot faces the same direction when moving around
             else{
                 leftMotorPower = gamepad1.left_stick_y;
                 rightMotorPower = gamepad1.left_stick_y;
             }
-
             middleMotorPower = gamepad1.left_stick_x;
 
-            //set power
+            //set power to motors
             motorLeft.setPower(leftMotorPower);
             motorRight.setPower(rightMotorPower);
             motorMiddle.setPower(middleMotorPower);
@@ -98,17 +98,19 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             //intake stuff
             if (gamepad2.dpad_down){
                 //spin in
+                //take in freight
                 intakeMotor.setPower(intakeMotorPower);
             }
             else if (gamepad2.dpad_up){
                 //spin opposite direction
+                //for jamming or to get rid of extra freight
                 intakeMotor.setPower(-intakeMotorPower);
             }
             else{
                 intakeMotor.setPower(0f);
             }
 
-            //lifting
+            //lifting the bucket thing on ikea drawer slide
             if (gamepad2.right_trigger > 0.1f){
                 slideMotor.setPower(gamepad2.right_trigger);
             }
@@ -119,23 +121,20 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
                 slideMotor.setPower(0);
             }
 
-            //dump bucket
-
+            //dump the freight bucket thing
             if(gamepad2.y){
                 if(bucketDump){
                     bucketServo.setPosition(0f);
                     bucketDump = false;
                 }
                 else{
-                    bucketServo.setPosition(0.9f);
+                    bucketServo.setPosition(0.7f);
                     bucketDump = true;
                 }
                 TimeUnit.MILLISECONDS.sleep(250);
             }
 
-            //carousel spinny thing stuff
-
-
+            //carousel spinny thing code
             if (gamepad2.x){
                 //counterclockwise
                 if(carouselOn){
