@@ -16,6 +16,7 @@ public class encoderTest extends LinearOpMode {
     DcMotor Intake;
     DcMotor Wheel;
     Servo cube;
+    Servo cappingServo;
 
     public void runOpMode() throws  InterruptedException{
 
@@ -26,6 +27,7 @@ public class encoderTest extends LinearOpMode {
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
+        cappingServo = hardwareMap.servo.get("cappingServo");
 
         Wheel.setDirection(DcMotor.Direction.REVERSE);
 
@@ -35,7 +37,7 @@ public class encoderTest extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            drive(2,0,0.6);
+            drive(2,3,0.6);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
