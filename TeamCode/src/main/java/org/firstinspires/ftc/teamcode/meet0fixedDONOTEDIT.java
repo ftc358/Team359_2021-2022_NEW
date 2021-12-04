@@ -19,6 +19,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     private DcMotor carouselMotor;
     private DcMotor slideMotor;
     private Servo bucketServo;
+    private Servo bucketServo2;
 
     //settings not final!!!!!!
     //change settings here:
@@ -28,7 +29,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
     private float rightMotorPower = 0f;
     private float middleMotorPower = 0f;
     //intake stuff
-    public float intakeMotorPower = 0.5f;
+    public float intakeMotorPower = 1f;
     //spinny thing stuff
     public float carouselMotorPower = 0.9f;
     //servo positions
@@ -42,6 +43,7 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
         carouselMotor = hardwareMap.dcMotor.get("Wheel");
         slideMotor = hardwareMap.dcMotor.get("linearSlide");
         bucketServo = hardwareMap.servo.get("bucketServo");
+        bucketServo2 = hardwareMap.servo.get("bucketServo2");
 
         waitForStart();
 
@@ -56,6 +58,11 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
         while (opModeIsActive()) {
             telemetry.addData("opModeIsActive", opModeIsActive());
             telemetry.update();
+
+            telemetry.addData("leftstick x input:", gamepad1.left_stick_x);
+            telemetry.addData("leftstick y input:", gamepad1.left_stick_y);
+            telemetry.addData("rightstick x input:", gamepad1.right_stick_x);
+            telemetry.addData("rightstick y input:", gamepad1.right_stick_y);
 
             //driving stuff
 
@@ -90,7 +97,9 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
                 leftMotorPower = gamepad1.left_stick_y;
                 rightMotorPower = gamepad1.left_stick_y;
             }
-            middleMotorPower = gamepad1.left_stick_x;
+            if (gamepad1.left_stick_x > 0.1){
+                middleMotorPower = gamepad1.left_stick_x;
+            }
 
             //set power to motors
             motorLeft.setPower(leftMotorPower);
@@ -126,11 +135,13 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             //dump the freight bucket thing
             if(gamepad2.y){
                 if(bucketDump){
-                    bucketServo.setPosition(0f);
+                    bucketServo.setPosition(0.05f);
+                    bucketServo2.setPosition(0.05f);
                     bucketDump = false;
                 }
                 else{
-                    bucketServo.setPosition(0.7f);
+                    bucketServo.setPosition(0.6f);
+                    bucketServo2.setPosition(0.6f);
                     bucketDump = true;
                 }
                 TimeUnit.MILLISECONDS.sleep(250);
