@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import java.lang.*;
 
 
 @Autonomous
@@ -16,6 +17,7 @@ public class encoderTest extends LinearOpMode {
     DcMotor Intake;
     DcMotor Wheel;
     Servo cube;
+//    Servo cappingServo;
 
     public void runOpMode() throws  InterruptedException{
 
@@ -26,6 +28,7 @@ public class encoderTest extends LinearOpMode {
         linearSlide = hardwareMap.dcMotor.get("linearSlide");
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
+//        cappingServo = hardwareMap.servo.get("cappingServo");
 
         Wheel.setDirection(DcMotor.Direction.REVERSE);
 
@@ -35,7 +38,9 @@ public class encoderTest extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            drive(2,0,0.6);
+            drive(2,3,0.6);
+            sleep(2000);
+            turn(90,0.6);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
@@ -43,21 +48,22 @@ public class encoderTest extends LinearOpMode {
         }
     }
 
-    final double DRIVE_FACTOR = 152.788745368;
+    final double DRIVE_FACTOR = 89.1267681315;
     final double TURN_FACTOR = 29.6048043436;
     final double LIFT_FACTOR = 30.5577;
 
-    public void drive (float inchF, float inchLR, double power)
-    {
+    public void drive (int inch, int sideM, double power){
+        int ticks = (int) (inch * DRIVE_FACTOR);
         //Reset Encoders
         motorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorMiddle.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set Target Position
-        motorLeft.setTargetPosition((int) (inchF * DRIVE_FACTOR));
-        motorRight.setTargetPosition((int) (inchF * DRIVE_FACTOR));
-        motorMiddle.setTargetPosition((int) (inchLR * DRIVE_FACTOR));
+        motorLeft.setTargetPosition(motorLeft.getCurrentPosition() + ticks);
+        motorRight.setTargetPosition(motorRight.getCurrentPosition() + ticks);
+        motorMiddle.setTargetPosition(motorMiddle.getCurrentPosition() + ticks);
+
 
         //Set Drive Power
         motorLeft.setPower(power);
@@ -69,7 +75,11 @@ public class encoderTest extends LinearOpMode {
         motorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorMiddle.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while (motorLeft.isBusy() && motorRight.isBusy() && motorMiddle.isBusy()){
+        while (motorLeft.isBusy() && motorRight.isBusy()){
+            telemetry.addData("lf", motorLeft.getCurrentPosition());
+            telemetry.addData("lf", motorRight.getTargetPosition());
+            telemetry.addData("lb", motorMiddle.getCurrentPosition());
+            telemetry.update();
             //Wait Until Target Position is Reached
         }
     }
