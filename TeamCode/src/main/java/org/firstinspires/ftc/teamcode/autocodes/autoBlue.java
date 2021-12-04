@@ -39,7 +39,7 @@ public class autoBlue extends LinearOpMode {
         }
     }
 
-    final double DRIVE_FACTOR = 152.788745368;
+    final double DRIVE_FACTOR = 89.1267681315;
     final double TURN_FACTOR = 29.6048043436;
     final double LIFT_FACTOR = 30.5577;
 

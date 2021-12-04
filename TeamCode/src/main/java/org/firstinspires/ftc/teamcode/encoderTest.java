@@ -38,6 +38,7 @@ public class encoderTest extends LinearOpMode {
         while (opModeIsActive()) {
 
             drive(2,3,0.6);
+            turn(90,0.6);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
@@ -45,7 +46,7 @@ public class encoderTest extends LinearOpMode {
         }
     }
 
-    final double DRIVE_FACTOR = 152.788745368;
+    final double DRIVE_FACTOR = 89.1267681315;
     final double TURN_FACTOR = 29.6048043436;
     final double LIFT_FACTOR = 30.5577;
 
