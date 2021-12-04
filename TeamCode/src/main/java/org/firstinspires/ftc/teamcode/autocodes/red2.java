@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-
+import java.lang.*;
 
 @Autonomous
 public class red2 extends LinearOpMode {
@@ -16,6 +16,9 @@ public class red2 extends LinearOpMode {
     DcMotor Intake;
     DcMotor Wheel;
     Servo cube;
+
+    final float cubes = 180;
+    final float reset = 0;
 
     public void runOpMode() throws  InterruptedException{
 
@@ -35,14 +38,18 @@ public class red2 extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            drive(-12, -27, 0.4);
-            linSlide(2, 0.5);
+            drive(-12, 20, 0.4);
+            linSlide(2, 0.6);
+            cube.setPosition(cubes);
+            cube.setPosition(reset);
+            linSlide(-2,0.6);
 
-            drive(26, 25, 0.4);
+            drive(26, -19, 0.4);
             Wheel.setPower(1);
             sleep(3000);
+            Wheel.setPower(0);
 
-            drive(0, -11, 0.4);
+            drive(0, -16, 0.4);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
