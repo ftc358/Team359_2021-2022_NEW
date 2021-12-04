@@ -27,7 +27,6 @@ public class wheelRed extends LinearOpMode {
         cube = hardwareMap.servo.get("bucketServo");
 
 
-
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 

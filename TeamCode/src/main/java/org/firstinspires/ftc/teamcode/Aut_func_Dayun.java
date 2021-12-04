@@ -28,7 +28,7 @@ public class Aut_func_Dayun extends LinearOpMode {
 //    public long lastTime = System.currentTimeMillis();
 //    public int timeElapsed = 1000; // this is in milliseconds
 
-    final double DRIVE_FACTOR = 152.788745368; //30 * (10/9.2);
+    final double DRIVE_FACTOR = 89.1267681315; //30 * (10/9.2);
     final double TURN_FACTOR = 29.6048043436; //5 * (predict/real)
 
 
