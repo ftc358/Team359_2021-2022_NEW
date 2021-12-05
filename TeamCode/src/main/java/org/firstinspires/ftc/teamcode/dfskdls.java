@@ -38,26 +38,26 @@ public class dfskdls extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            motorMiddle.setPower(0.5);
-            sleep(900);
+            motorMiddle.setPower(0.9);
+            sleep(3000);
             motorMiddle.setPower(0);
 
-            motorLeft.setPower(0.2);
-            motorRight.setPower(0.2);
-            sleep(200);
+            motorLeft.setPower(-0.2);
+            motorRight.setPower(-0.2);
+            sleep(400);
             motorRight.setPower(0);
             motorLeft.setPower(0);
 
             cube.setPosition(cubes);
             cube.setPosition(reset);
 
-            motorMiddle.setPower(-0.5);
-            sleep(1400);
+            motorMiddle.setPower(-0.9);
+            sleep(5000);
             motorMiddle.setPower(0);
 
-            motorLeft.setPower(0.6);
-            motorRight.setPower(0.6);
-            sleep(1000);
+            motorLeft.setPower(0.8);
+            motorRight.setPower(0.8);
+            sleep(4000);
             motorRight.setPower(0);
             motorLeft.setPower(0);
 
