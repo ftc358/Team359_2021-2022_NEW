@@ -53,7 +53,6 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
         boolean carouselOn = false;
 
         //init
-        bucketServo.setPosition(0f);
 
         while (opModeIsActive()) {
             telemetry.addData("opModeIsActive", opModeIsActive());
@@ -97,8 +96,11 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
                 leftMotorPower = gamepad1.left_stick_y;
                 rightMotorPower = gamepad1.left_stick_y;
             }
-            if (gamepad1.left_stick_x > 0.1){
+            if (Math.abs(gamepad1.left_stick_x) > 0.1){
                 middleMotorPower = gamepad1.left_stick_x;
+            }
+            else{
+                middleMotorPower = 0;
             }
 
             //set power to motors
@@ -135,13 +137,13 @@ public class meet0fixedDONOTEDIT extends LinearOpMode{
             //dump the freight bucket thing
             if(gamepad2.y){
                 if(bucketDump){
-                    bucketServo.setPosition(0.05f);
-                    bucketServo2.setPosition(0.05f);
+                    bucketServo.setPosition(0.25f);
+                    bucketServo2.setPosition(0.75f);
                     bucketDump = false;
                 }
                 else{
-                    bucketServo.setPosition(0.6f);
-                    bucketServo2.setPosition(0.6f);
+                    bucketServo.setPosition(0.9f);
+                    bucketServo2.setPosition(0.1f);
                     bucketDump = true;
                 }
                 TimeUnit.MILLISECONDS.sleep(250);
