@@ -38,33 +38,37 @@ public class ajhdgkjas extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            motorLeft.setPower(0.5);
-            motorRight.setPower(0.5);
-            sleep(1600);
-            motorRight.setPower(0);
-            motorLeft.setPower(0);
 
-            Wheel.setPower(-1);
-            sleep(3500);
-            Wheel.setPower(0);
-
-            motorMiddle.setPower(-0.5);
-            sleep(700);
-            motorMiddle.setPower(0);
-
-            motorLeft.setPower(0.2);
-            motorRight.setPower(0.2);
-            sleep(100);
-            motorLeft.setPower(0);
-            motorRight.setPower(0);
-
-            float position = motorLeft.getCurrentPosition();
-            telemetry.addData("Encoder Position", position);
-            telemetry.update();
-
-            // Show the elapsed game time and wheel power.
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
-            telemetry.update();
+            motorLeft.setPower(0.8);
+            motorRight.setPower(0.8);
+            sleep(3000);
+//            motorLeft.setPower(0.5);
+//            motorRight.setPower(0.5);
+//            sleep(1600);
+//            motorRight.setPower(0);
+//            motorLeft.setPower(0);
+//
+//            Wheel.setPower(-1);
+//            sleep(3500);
+//            Wheel.setPower(0);
+//
+//            motorMiddle.setPower(-0.5);
+//            sleep(700);
+//            motorMiddle.setPower(0);
+//
+//            motorLeft.setPower(0.2);
+//            motorRight.setPower(0.2);
+//            sleep(100);
+//            motorLeft.setPower(0);
+//            motorRight.setPower(0);
+//
+//            float position = motorLeft.getCurrentPosition();
+//            telemetry.addData("Encoder Position", position);
+//            telemetry.update();
+//
+//            // Show the elapsed game time and wheel power.
+//            telemetry.addData("Motors", "left (%.2f), right (%.2f)", 1, 1);
+//            telemetry.update();
         }
     }
 
