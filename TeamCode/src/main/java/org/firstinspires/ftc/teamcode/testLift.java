@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.lang.*;
 
 @Autonomous
-public class dfskdls extends LinearOpMode {
+public class testLift extends LinearOpMode {
 
     DcMotor motorLeft;
     DcMotor motorRight;
@@ -17,8 +17,6 @@ public class dfskdls extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
-    final float cubes = 180;
-    final float reset = 0;
 
     public void runOpMode() throws  InterruptedException{
 
@@ -30,42 +28,40 @@ public class dfskdls extends LinearOpMode {
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
 
-        motorLeft.setDirection(DcMotor.Direction.REVERSE);
+//        motorLeft.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
-            motorMiddle.setPower(0.9);
-            sleep(6000);
-            motorMiddle.setPower(0);
-
-            motorLeft.setPower(-0.2);
-            motorRight.setPower(-0.2);
-            sleep(400);
-            motorRight.setPower(0);
-            motorLeft.setPower(0);
-
-            cube.setPosition(cubes);
-            cube.setPosition(reset);
-
-            motorMiddle.setPower(-0.9);
-            sleep(5000);
-            motorMiddle.setPower(0);
-
-            motorLeft.setPower(0.8);
-            motorRight.setPower(0.8);
-            sleep(4000);
-            motorRight.setPower(0);
-            motorLeft.setPower(0);
-
-//            float position = motorLeft.getCurrentPosition();
-//            telemetry.addData("Encoder Position", position);
-//            telemetry.update();
-
+        while (opModeIsActive())
+        {
+            position1();
         }
+    }
+
+    public void position1()
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition(288);
+        linearSlide.setPower(0.6);
+        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void position2()
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition(502);
+        linearSlide.setPower(0.6);
+        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void position3()
+    {
+        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlide.setTargetPosition(800);
+        linearSlide.setPower(0.6);
+        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
 }
