@@ -17,7 +17,6 @@ public class testLift extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
-
     public void runOpMode() throws  InterruptedException{
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
