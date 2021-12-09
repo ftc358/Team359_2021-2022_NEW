@@ -37,10 +37,6 @@ public class testLift extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive() && !done)
         {
-            linearSlide.setPower(0.6);
-            sleep(1000);
-            linearSlide.setPower(0);
-
             position1();
             done = true;
         }
