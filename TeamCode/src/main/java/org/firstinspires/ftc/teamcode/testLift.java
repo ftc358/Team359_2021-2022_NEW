@@ -17,6 +17,8 @@ public class testLift extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
+    private boolean done = false;
+
     public void runOpMode() throws  InterruptedException{
 
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
@@ -33,9 +35,10 @@ public class testLift extends LinearOpMode {
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        while (opModeIsActive())
+        while (opModeIsActive() && !done)
         {
             position1();
+            done = true;
         }
     }
 
