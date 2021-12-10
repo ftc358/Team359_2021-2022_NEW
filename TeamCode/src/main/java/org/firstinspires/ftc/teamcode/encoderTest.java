@@ -20,7 +20,9 @@ public class encoderTest extends LinearOpMode {
 //    Servo cappingServo;
 
     public void runOpMode() throws  InterruptedException{
-
+        int test = 1;
+        telemetry.addData("artichoke", test);
+        telemetry.update();
         motorLeft = hardwareMap.dcMotor.get("motorLeft");
         motorRight = hardwareMap.dcMotor.get("motorRight");
         motorMiddle = hardwareMap.dcMotor.get("motorMiddle");

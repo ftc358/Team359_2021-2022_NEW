@@ -47,6 +47,8 @@ public class testLift extends LinearOpMode {
         linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         linearSlide.setTargetPosition(288);
         linearSlide.setPower(0.6);
+        telemetry.addData("motor",linearSlide.getCurrentPosition());
+        telemetry.update();
         linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
