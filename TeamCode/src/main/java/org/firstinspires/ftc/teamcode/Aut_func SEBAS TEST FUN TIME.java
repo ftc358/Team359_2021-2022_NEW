@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 /* 
+   FILE DESCRIPTION:
+
    Sebastian's variant of autonomous code from Dayun -- originally
    copied 12/14/21 at 4:10 PM. 
    
@@ -10,6 +12,7 @@ package org.firstinspires.ftc.teamcode;
    for my edification.
 
    Description of actions+functions:
+   Dunno yet.
 
 */
 
