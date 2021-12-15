@@ -30,7 +30,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.lang.*;
 
 @Autonomous
-public class NEVER_USE_THIS_Aut_func_Sebastian extends LinearOpMode {
+public class Aut_func_Sebastian extends LinearOpMode {
 
     //defining stuff
 
