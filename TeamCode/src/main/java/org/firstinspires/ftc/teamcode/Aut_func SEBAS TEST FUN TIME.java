@@ -1,5 +1,18 @@
 package org.firstinspires.ftc.teamcode;
 
+/* 
+   Sebastian's variant of autonomous code from Dayun -- originally
+   copied 12/14/21 at 4:10 PM. 
+   
+   Editor's note: All credits to Dayun for the original
+   work -- I just don't want to watch 6 hours of Java code so I'm
+   just going to rely on Dayun's code and FTC documentation googling
+   for my edification.
+
+   Description of actions+functions:
+
+*/
+
 //1 rev : 1600
 //wheel diameter: 4"
 //40cm =~ 16" to the tower
@@ -12,7 +25,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.lang.*;
 
 @Autonomous
-public class Aut_func_Dayun extends LinearOpMode {
+public class Aut_func_Sebastian extends LinearOpMode {
 
     //defining stuff
 
