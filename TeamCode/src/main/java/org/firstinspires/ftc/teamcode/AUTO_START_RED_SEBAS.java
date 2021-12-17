@@ -50,27 +50,27 @@ public class AUTO_START_RED_SEBAS extends LinearOpMode {
         int ticks = (int) (inch * DRIVE_FACTOR);
 
         //Reset Encoders
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set Target Position
-        leftDrive.setTargetPosition(leftDrive.getCurrentPosition() - ticks);
-        rightDrive.setTargetPosition(rightDrive.getCurrentPosition() - ticks);
+        //leftDrive.setTargetPosition(leftDrive.getCurrentPosition() - ticks);
+        //rightDrive.setTargetPosition(rightDrive.getCurrentPosition() - ticks);
 
         //Set Drive Power
         leftDrive.setPower(0.5 * power);
         rightDrive.setPower(0.5 * power);
 
         //Set to RUN_TO_POSITION mode
-        leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        while (leftDrive.isBusy() && rightDrive.isBusy()) {
-            telemetry.addData("leftDrive", -leftDrive.getCurrentPosition());
-            telemetry.addData("rightDrive", -rightDrive.getCurrentPosition());
-            telemetry.update();
-        }
-        sleep(500);
+        //while (leftDrive.isBusy() && rightDrive.isBusy()) {
+        //    telemetry.addData("leftDrive", -leftDrive.getCurrentPosition());
+        //    telemetry.addData("rightDrive", -rightDrive.getCurrentPosition());
+        //    telemetry.update();
+        //}
+        sleep((long)(inch*power*200));
     }
 
     public void turn(int degree, double power) {
