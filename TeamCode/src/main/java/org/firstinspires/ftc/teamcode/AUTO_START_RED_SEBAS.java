@@ -37,7 +37,7 @@ public class AUTO_START_RED_SEBAS extends LinearOpMode {
     public void setup() throws InterruptedException {
         leftDrive = hardwareMap.dcMotor.get("motorLeft");
         rightDrive = hardwareMap.dcMotor.get("motorRight");
-        linearSlide = hardwareMap.dcMotor.get("linearSlide");
+        linearSlide = hardwareMap.dcMotor.get(DcMotorEx.class, "linearSlide");
         middle = hardwareMap.dcMotor.get("motorMiddle");
         actualWheel = hardwareMap.dcMotor.get("Intake");
         greenWheel = hardwareMap.dcMotor.get("Wheel");
@@ -134,7 +134,8 @@ public class AUTO_START_RED_SEBAS extends LinearOpMode {
 
 //            forward(20, 0.8);
             forward(10, 0.8);
-            turn(90,0.8)
+            turn(90,0.8);
+            forward(5, 0.8);
             done = true;
 
 
