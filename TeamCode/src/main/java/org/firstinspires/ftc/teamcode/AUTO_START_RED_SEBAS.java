@@ -136,8 +136,7 @@ public class AUTO_START_RED_SEBAS extends LinearOpMode {
 //            forward(20, 0.8);
             forward(10, 0.8);
             turn(90,0.8);
-            forward(5, 0.8);
-            done = true;
+            forward(5, 0.8)            done = true;
 
 
             //do ^^ this after every function since it doesn't stop by itself
