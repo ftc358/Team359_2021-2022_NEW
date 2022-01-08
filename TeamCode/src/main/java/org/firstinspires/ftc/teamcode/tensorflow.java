@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.List;
@@ -67,7 +66,7 @@ public class tensorflow extends LinearOpMode {
      * Once you've obtained a license key, copy the string from the Vuforia web site
      * and paste it in to your code on the next line, between the double quotes.
      */
-    private static final String VUFORIA_KEY = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+    private static final String VUFORIA_KEY = "AR64Laj/////AAABmbn4uRlXNkjmkVGXiiLNCjATdZ81DYLSAEgEmubuAd6Ep4/BIaqWDHTPVXb49sLhPKKilR8Az6IGp00TLJolS5H3UOIVOu3Q2b2hMthcIodt0eq1xuWUd8JlntxGxsTvdGDJNFB2fXTlnqaOvTz9j5sFEB2cbMUQjOtuy7LEnYCVgQYK5HWHM1oONM9L6W3IGur7L5NNtr1Z2NeeYO9K3uJxvPt1ZUIBScUkJ587vxW2ftK6pwcaYCkMMKiKm7QJ8eQbOZ6rB4TJ783bZcLeh95S8CrS+hGQkUicIp5QWyXBwZ9nn7SkDZdvtwegl4/1BPPVC9aQVz9k8jlCXosKwVe1vBbNiIcBDZdTVBmvtepl";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
@@ -86,12 +85,7 @@ public class tensorflow extends LinearOpMode {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
-
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-            initTfod();
-        } else {
-            telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
+        initTfod();
 
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
