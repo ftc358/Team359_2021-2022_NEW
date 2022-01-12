@@ -7,25 +7,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.lang.*;
 
 @Autonomous
-public class autoBlue extends LinearOpMode {
+public class autoBlue extends RobotMain359 {
 
-    DcMotor motorLeft;
-    DcMotor motorRight;
-    DcMotor motorMiddle;
-    DcMotor linearSlide;
-    DcMotor Intake;
-    DcMotor Wheel;
-    Servo cube;
 
     public void runOpMode() throws  InterruptedException{
 
-        motorLeft = hardwareMap.dcMotor.get("motorLeft");
-        motorRight = hardwareMap.dcMotor.get("motorRight");
-        motorMiddle = hardwareMap.dcMotor.get("motorMiddle");
-        Intake = hardwareMap.dcMotor.get("Intake");
-        linearSlide = hardwareMap.dcMotor.get("linearSlide");
-        Wheel = hardwareMap.dcMotor.get("Wheel");
-        cube = hardwareMap.servo.get("bucketServo");
 
         Intake.setDirection(DcMotor.Direction.REVERSE);
 
