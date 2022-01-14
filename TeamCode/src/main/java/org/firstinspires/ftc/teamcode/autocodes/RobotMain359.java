@@ -72,24 +72,34 @@ public abstract class RobotMain359 extends LinearOpMode {
         return df;
     }
 
-    public void forward (long time, float power){
+    public void forward (long time, float power)
+    {
         motorLeft.setPower(power);
         motorRight.setPower(power);
         sleep(time/1000);
+    }
+
+    public void turnr (long time, float power)
+    {
+        motorLeft.setPower(power);
+        motorRight.setPower(-power);
+        sleep(time/1000);
+    }
+
+    public void turnl (long time, float power)
+    {
+        motorLeft.setPower(-power);
+        motorRight.setPower(power);
+        sleep(time/1000);
+    }
+
+    public void carousel(String state)
+    {
 
     }
 
-    public void turn (int degree, double power){
-
-
-
-    }
-
-    public void carousel(String state){
-
-    }
-
-    public void slide(int position){
+    public void slide(int position)
+    {
 
     }
 
