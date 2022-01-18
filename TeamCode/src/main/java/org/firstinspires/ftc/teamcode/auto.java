@@ -54,7 +54,7 @@ public class auto extends LinearOpMode {
             telemetry.update();
 
             done = false;
-
+//yes
         }
     }
 
