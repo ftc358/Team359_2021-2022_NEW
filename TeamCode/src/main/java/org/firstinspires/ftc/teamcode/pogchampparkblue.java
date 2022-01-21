@@ -52,9 +52,9 @@ public class pogchampparkblue extends LinearOpMode {
         while (opModeIsActive() && !done) {
 
 
-            motorLeft.setPower(0.5);
-            motorRight.setPower(0.5);
-            sleep(5000);
+            motorLeft.setPower(0.3);
+            motorRight.setPower(0.3);
+            sleep(4000);
             motorLeft.setPower(0);
             motorRight.setPower(0);
 

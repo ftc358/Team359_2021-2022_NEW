@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "red park")
+@Autonomous//(name = "red park")
 public class pogchampparkred extends LinearOpMode {
 
     private DcMotor motorLeft;
@@ -52,9 +52,9 @@ public class pogchampparkred extends LinearOpMode {
         while (opModeIsActive() && !done) {
 
 
-            motorLeft.setPower(0.5);
-            motorRight.setPower(0.5);
-            sleep(5000);
+            motorLeft.setPower(0.3);
+            motorRight.setPower(0.3);
+            sleep(4000);
             motorLeft.setPower(0);
             motorRight.setPower(0);
 

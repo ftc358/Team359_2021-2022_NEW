@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 
-@Autonomous(name = "red carousel side spin poggers")
-public class jonathanPoggersAutoBlueSpin extends LinearOpMode {
+@Autonomous(name = "red carousel side spin poggers 2")
+public class autopoggersredspin2 extends LinearOpMode {
 
     private DcMotor motorLeft;
     private DcMotor motorRight;
@@ -67,52 +67,50 @@ public class jonathanPoggersAutoBlueSpin extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive() && !done) {
 
-        //move forward
-        bucketServo.setPosition(0.25f);
-        bucketServo2.setPosition(0.75f);
-        motorLeft.setPower(0.5);
-        motorRight.setPower(0.5);
-        sleep(1750);
-        motorLeft.setPower(0);
-        motorRight.setPower(0);
-        //move to shipping hub
-        motorMiddle.setPower(-1);
-        slideMotor.setPower(1);
-        sleep(1500);
-        motorMiddle.setPower(0);
-        sleep(500);
-        slideMotor.setPower(0);
-        //dump bucket
-        sleep(1000);
-        bucketServo.setPosition(0.9f);
-        bucketServo2.setPosition(0.1f);
-        sleep(1000);
-        //move to carousel
-        motorMiddle.setPower(1);
-        sleep(4000);
-        motorMiddle.setPower(0);
-        //spin carousel
-        motorRight.setPower(-0.4);
-        motorLeft.setPower(-0.3);
-        sleep(4500);
-        motorLeft.setPower(-0.05);
-        motorRight.setPower(-0.05);
-        carouselMotor.setPower(-1);
-        sleep(2500);
-        carouselMotor.setPower(0);
-        //park
-        motorRight.setPower(0.5);
-        motorLeft.setPower(0.5);
-        sleep(2000);
-        bucketServo.setPosition(0.25f);
-        bucketServo2.setPosition(0.75f);
-        motorLeft.setPower(0);
-        motorRight.setPower(0);
-        slideMotor.setPower(-1);
-        sleep(1500);
-        slideMotor.setPower(0);
+            //move sideways
+            bucketServo.setPosition(0.25f);
+            bucketServo2.setPosition(0.75f);
+            motorMiddle.setPower(1);
+            sleep(2000);
+            //move to shipping hub
+            motorMiddle.setPower(0);
+            slideMotor.setPower(1);
+            sleep(2000);
+            slideMotor.setPower(0);
+            //dump bucket
+            sleep(1000);
+            bucketServo.setPosition(0.9f);
+            bucketServo2.setPosition(0.1f);
+            sleep(1000);
+            //move to carousel
+            motorRight.setPower(-0.5);
+            motorLeft.setPower(- 0.5);
+            sleep(4000);
+            motorLeft.setPower(0);
+            motorRight.setPower(0);
+            motorMiddle.setPower(-0.75);
+            sleep(3000);
+            motorMiddle.setPower(-0.05);
+            //spin carousel
+            carouselMotor.setPower(-1);
+            sleep(2500);
+            carouselMotor.setPower(0);
+            //park
+            motorMiddle.setPower(0.75);
+            sleep(1500);
+            motorMiddle.setPower(0);
+            bucketServo.setPosition(0.25f);
+            bucketServo2.setPosition(0.75f);
+            slideMotor.setPower(-1);
+            sleep(1750);
+            slideMotor.setPower(0);
+            motorRight.setPower(-0.25f);
+            motorLeft.setPower(-0.25f);
+            sleep(1500);
+            motorRight.setPower(0);
+            motorLeft.setPower(0);
 
-        done = true;
+            done = true;
         }
     }
 }
