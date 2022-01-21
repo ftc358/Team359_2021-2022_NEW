@@ -30,7 +30,7 @@ public class ajhdgkjas extends LinearOpMode {
         Wheel = hardwareMap.dcMotor.get("Wheel");
         cube = hardwareMap.servo.get("bucketServo");
 
-        motorLeft.setDirection(DcMotor.Direction.REVERSE);
+//        motorLeft.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

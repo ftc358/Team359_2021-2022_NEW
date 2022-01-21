@@ -17,6 +17,7 @@ public class wheelThingie extends LinearOpMode {
     DcMotor Wheel;
     Servo cube;
 
+    private boolean done = false;
 
     public void runOpMode() {
 
@@ -34,7 +35,7 @@ public class wheelThingie extends LinearOpMode {
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
+        while (opModeIsActive() && !done) {
 
             motorLeft.setPower(-0.5);
             motorRight.setPower(0.5);
@@ -51,11 +52,18 @@ public class wheelThingie extends LinearOpMode {
             sleep(3500);
             Wheel.setPower(0);
 
+            motorLeft.setPower(-0.3);
+            motorRight.setPower(0.3);
+            sleep(3020);
+            motorRight.setPower(0);
+            motorLeft.setPower(0);
+
 
             int position = motorLeft.getCurrentPosition();
             telemetry.addData("Encoder Position", position);
             telemetry.update();
 
+            done = true;
         }
     }
 
