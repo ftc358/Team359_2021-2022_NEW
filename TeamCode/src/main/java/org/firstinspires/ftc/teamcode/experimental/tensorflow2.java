@@ -22,7 +22,6 @@ import org.firstinspires.ftc.teamcode.autocodes.RobotMain359;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection2", group = "Concept")
-@Disabled
 public class tensorflow2 extends RobotMain359 {
     /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
      * the following 4 detectable objects
