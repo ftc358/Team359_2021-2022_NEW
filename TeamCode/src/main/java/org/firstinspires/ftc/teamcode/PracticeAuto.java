@@ -18,6 +18,13 @@ public class PracticeAuto extends RobotMain359
 
         telemetry.addData("left_effective: ", left_effective);
         telemetry.addData("right_effective: ", right_effective);
+
+        telemetry.addData("Accelerations of left: ", accelerations_left);
+        telemetry.addData("Accelerations of right: ", accelerations_right);
+
+        telemetry.addData("Decelerations of left: ", decelerations_left);
+        telemetry.addData("Decelerations of right: ", decelerations_right);
+
         telemetry.update();
 
         if(STATE == GO_AND_TURN) {

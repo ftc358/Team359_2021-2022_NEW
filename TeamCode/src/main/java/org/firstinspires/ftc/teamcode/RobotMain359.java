@@ -34,12 +34,18 @@ public abstract class RobotMain359 extends LinearOpMode {
     protected double spin_power = 1;
     protected double slide_power = 0.8;
 
+    protected int accelerations_left = 0;
+    protected int accelerations_right = 0;
+
+    protected int decelerations_left = 0;
+    protected int decelerations_right = 0;
+
     /* MOTION VARS */
 
-    protected int LEFT_DRIVE = 0;
+    protected int LEFT_DRIVE = 1;
     protected long left_stopat = System.currentTimeMillis()+1000000;
 
-    protected int RIGHT_DRIVE = 0;
+    protected int RIGHT_DRIVE = 1;
     protected long right_stopat = System.currentTimeMillis()+1000000;
 
     protected boolean SIDE_DRIVE = false;
@@ -56,11 +62,11 @@ public abstract class RobotMain359 extends LinearOpMode {
 
     /* MOTORS */
 
-    protected DcMotor leftDrive;
-    protected DcMotor rightDrive;
+    protected DcMotorEx leftDrive;
+    protected DcMotorEx rightDrive;
 
     protected DcMotor linearSlide;
-    protected DcMotor sideDrive;
+    protected DcMotorEx sideDrive;
 
     protected DcMotor intakeWheel;
     protected DcMotor carouselWheel;
@@ -80,8 +86,8 @@ public abstract class RobotMain359 extends LinearOpMode {
         LEFT_DRIVE = 2;
         RIGHT_DRIVE = 2;
 
-        left_stopat = System.currentTimeMillis()+(long)(30*inches*left_power);
-        right_stopat = System.currentTimeMillis()+(long)(30*inches*right_power);
+        left_stopat = System.currentTimeMillis()+(long)(600*inches*left_power);
+        right_stopat = System.currentTimeMillis()+(long)(600*inches*right_power);
     }
 
     /* INIT() function configures motors and sets all sorts of default parameters. */
@@ -89,12 +95,17 @@ public abstract class RobotMain359 extends LinearOpMode {
     public void INIT() throws InterruptedException
     {
         // Configures left, right, middle drive motors
-        leftDrive = hardwareMap.dcMotor.get("motorLeft");
+        leftDrive = (DcMotorEx)hardwareMap.dcMotor.get("motorLeft");
+        leftDrive.setMotorEnable();
 
-        rightDrive = hardwareMap.dcMotor.get("motorRight");
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
 
-        sideDrive = hardwareMap.dcMotor.get("motorMiddle");
+        rightDrive = (DcMotorEx)hardwareMap.dcMotor.get("motorRight");
+        rightDrive.setMotorEnable();
+
+        sideDrive = (DcMotorEx)hardwareMap.dcMotor.get("motorMiddle");
+        sideDrive.setMotorEnable();
+
         // Configures intake motor, linear slide, carousel spin motor
         intakeWheel = hardwareMap.dcMotor.get("Intake");
         intakeWheel.setDirection(DcMotor.Direction.REVERSE);
@@ -125,8 +136,8 @@ public abstract class RobotMain359 extends LinearOpMode {
 
         // Checks all stop times, and stops motors
 
-        if((System.currentTimeMillis() - left_stopat) > 0) LEFT_DRIVE = 0;
-        if((System.currentTimeMillis() - right_stopat) > 0) RIGHT_DRIVE = 0;
+        if((System.currentTimeMillis() - left_stopat) > 0 && left_effective != 0) LEFT_DRIVE = 0;
+        if((System.currentTimeMillis() - right_stopat) > 0 && right_effective != 0) RIGHT_DRIVE = 0;
         if((System.currentTimeMillis() - side_stopat) > 0) SIDE_DRIVE = false;
 
         if((System.currentTimeMillis() - intake_stopat) > 0) INTAKE_DRIVE = false;
@@ -136,47 +147,58 @@ public abstract class RobotMain359 extends LinearOpMode {
         leftDrive.setPower(left_effective/10);
         rightDrive.setPower(right_effective/10);
 
-        // Activates or deactivates left, right, and side drives based on state
+        // Accelerates or decelerates left or right motors as motor states change
         if(LEFT_DRIVE == 2)
         {
-            if(Math.floor(left_effective+1) >= left_power) LEFT_DRIVE = 1;
-            if((System.currentTimeMillis() - left_acc_last) > 50)
+            if((left_effective+1)/10 >= left_power) LEFT_DRIVE = 1;
+            if((System.currentTimeMillis() - left_acc_last) >= 300)
             {
-                int increment = 1;
-                left_effective += increment;
-
+                left_effective += 1;
                 left_acc_last = System.currentTimeMillis();
+
+                accelerations_left++;
             }
         }
         else if(LEFT_DRIVE == 0)
         {
-            if(left_effective <= 0) LEFT_DRIVE = 1;
-            if((System.currentTimeMillis() - left_acc_last) > 50)
+            if((left_effective-1)/10 <= 0)
             {
-                int increment = 1;
-                left_effective += increment;
-
+                left_effective = 0;
+                LEFT_DRIVE = 1;
+            }
+            if((System.currentTimeMillis() - left_acc_last) >= 300)
+            {
+                left_effective -= 1;
                 left_acc_last = System.currentTimeMillis();
+
+                decelerations_left++;
             }
         }
 
         if(RIGHT_DRIVE == 2)
         {
-            if(Math.floor(left_effective+1) >= right_power) RIGHT_DRIVE = 1;
-            if((System.currentTimeMillis() - right_acc_last) > 50)
+            if((right_effective+1)/10 >= right_power) RIGHT_DRIVE = 1;
+            if((System.currentTimeMillis() - right_acc_last) >= 300)
             {
+                right_effective += 1;
                 right_acc_last = System.currentTimeMillis();
+
+                accelerations_right++;
             }
         }
         else if(RIGHT_DRIVE == 0)
         {
-            if(right_effective <= 0) RIGHT_DRIVE = 1;
-            if((System.currentTimeMillis() - right_acc_last) > 50)
+            if((right_effective-1)/10 <= 0)
             {
-                double increment = 1;
-                right_effective -= increment;
-
+                right_effective = 0;
+                RIGHT_DRIVE = 1;
+            }
+            if((System.currentTimeMillis() - right_acc_last) >= 300)
+            {
+                right_effective -= 1;
                 right_acc_last = System.currentTimeMillis();
+
+                decelerations_right++;
             }
         }
 
